@@ -19,8 +19,8 @@
 
 Следуйте этим шагам, чтобы установить проект:
 
-1. **Клонируйте репозиторий**
-git clone https://github.com/silly-person-on-the-cheese-planet/Todo.git
+1. **Перейдите в репозиторий**
+(https://github.com/silly-person-on-the-cheese-planet/Todo)
 
 2. **Перейдите в ветку проекта**
 (https://github.com/silly-person-on-the-cheese-planet/Todo/tree/lab1)
