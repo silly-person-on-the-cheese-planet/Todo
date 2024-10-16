@@ -22,8 +22,8 @@
 1. **Клонируйте репозиторий**
 git clone https://github.com/silly-person-on-the-cheese-planet/Todo.git
 
-2. **Перейдите в папку проекта**
-cd Todo/lab1
+2. **Перейдите в ветку проекта**
+(https://github.com/silly-person-on-the-cheese-planet/Todo/tree/lab1)
 
 3. **Откройте проект в Visual Studio**
 Откройте файл .sln в Visual Studio
