@@ -125,14 +125,14 @@ namespace Desktop
 
             if (!inputValidator.IsValidName(name) || name == "Введите имя пользователя")
             {
-                MessageBox.Show("Имя пользователя слишком короткое!\nИмя пользователя обязательно должно содержать не менее трех символов.", "Ошибка регистрации [Имя пользователя]");
+                MessageBox.Show("Имя пользователя слишком короткое!\nИмя пользователя обязательно должно содержать не менее трех символов.", "Ошибка регистрации [Имя пользователя]", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (!inputValidator.IsValidEmail(mail) || mailBox.Foreground == Brushes.Gray && mailBox.Text == "exam@yandex.ru")
-                MessageBox.Show("Указан неверный формат Почты!\nПример правильной Почты: example@mail.ru", "Ошибка регистрации [Почта]");
+                MessageBox.Show("Указан неверный формат Почты!\nПример правильной Почты: example@mail.ru", "Ошибка регистрации [Почта]", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (!inputValidator.IsValidPassword(password))
-                MessageBox.Show("Слишком короткий Пароль!\nПароль обязательно должен содержать не менее шести символов.", "Ошибка регистрации [Пароль]");
+                MessageBox.Show("Слишком короткий Пароль!\nПароль обязательно должен содержать не менее шести символов.", "Ошибка регистрации [Пароль]", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (password != pass2PASSwordBox.Password)
-                MessageBox.Show("Пароли должны совпадать!", "Ошибка регистрации [Пароль]");
+                MessageBox.Show("Пароли должны совпадать!", "Ошибка регистрации [Пароль]", MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {
                 MainEmpty mainempty = new MainEmpty();
