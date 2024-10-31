@@ -20,7 +20,7 @@
             <TextBox x:Name="mailBox" HorizontalAlignment="Left" Margin="4,250,0,0" TextWrapping="Wrap" Text="Введите почту" VerticalAlignment="Top" Width="290" BorderThickness="0,0,0,2" Height="23" FontSize="15" BorderBrush="#FFF1F1F1" Background="{x:Null}" GotFocus="mailBox_GotFocus" LostFocus="mailBox_LostFocus"/>
             <Label Content="Пароль" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Margin="0,290,0,0"/>
             <Label Content="Восстановить пароль" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="16" Margin="0,353,106,0"/>
-            <Button x:Name="loginB" HorizontalAlignment="Left" Margin="10,421,0,0" VerticalAlignment="Top" Width="284" Background="#FFF96868" Height="45" Foreground="White" BorderBrush="{x:Null}" Padding="0,0,0,0" BorderThickness="0,0,0,0">
+            <Button x:Name="loginB" HorizontalAlignment="Left" Margin="10,421,0,0" VerticalAlignment="Top" Width="284" Background="#FFF96868" Height="45" Foreground="White" BorderBrush="{x:Null}" Padding="0,0,0,0" BorderThickness="0,0,0,0" Click="loginB_Click">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="#f96060"
