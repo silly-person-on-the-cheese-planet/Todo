@@ -15,7 +15,7 @@
 
 ## Установка
 
-git clone <https://github.com/silly-person-on-the-cheese-planet/Todo-labs>
+git clone <https://github.com/silly-person-on-the-cheese-planet/Todo>
 
 ## Автор
 
