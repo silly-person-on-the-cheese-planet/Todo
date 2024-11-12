@@ -9,8 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="checkmark.png" />
     <None Remove="logo.png" />
     <None Remove="profile.png" />
+    <None Remove="TaskFolder\checkmark.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,8 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="checkmark.png" />
     <Resource Include="logo.png" />
     <Resource Include="profile.png" />
+    <Resource Include="TaskFolder\checkmark.png" />
   </ItemGroup>
 
 </Project>
