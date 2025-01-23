@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using Desktop.Repository;
 
 namespace Desktop
 {
@@ -135,14 +128,16 @@ namespace Desktop
                 MessageBox.Show("Пароли должны совпадать!", "Ошибка регистрации [Пароль]", MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {
-                Main main = new(name);
-                main.Show();
-                this.Close();
-                
-                
-               // MainEmpty mainempty = new MainEmpty();
-               // mainempty.Show();
-               // this.Close();
+                if (UserRepository.RegisterUser(name, mail, password))
+                {
+                    MainEmpty mainEmpty = new MainEmpty(name);
+                    mainEmpty.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Пользователь с таким именем или почтой уже существует.", "Ошибка регистрации", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
     }

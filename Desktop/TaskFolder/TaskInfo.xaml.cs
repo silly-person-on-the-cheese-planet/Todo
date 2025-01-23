@@ -1,28 +1,13 @@
 ﻿using Desktop.Repository;
 using Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Desktop.TaskFolder
 {
-    /// <summary>
-    /// Логика взаимодействия для TaskInfo.xaml
-    /// </summary>
     public partial class TaskInfo : UserControl
     {
-        public delegate void DeleteTaskItemDel();
+        public delegate void DeleteTaskItemDel(TaskDictionary task);
         public event DeleteTaskItemDel? DeleteTaskItem;
 
         private TaskDictionary? Task;
@@ -40,29 +25,33 @@ namespace Desktop.TaskFolder
 
         private void InitializeTaskInfo()
         {
-            if (Task == null)
-                return;
+            if (Task == null) return;
 
             TitleItem.Text = Task.Name;
             TimeItem.Text = Task.Time;
             DateItem.Text = Task.Date;
             SubtitleItem.Text = Task.Description;
+            DoneB.Content = Task.IsCompleted ? "Не готово" : "Готово";
         }
 
         private void DoneB_Click(object sender, RoutedEventArgs e)
         {
-            var itemRepos = TaskRepository.GetTaskRepository();
-            var tasksRepos = itemRepos.GetTaskRepos((int)Task.Id);
-            tasksRepos.IsCompleted = !Task.IsCompleted;
-            itemRepos.RefreshTaskItems();
-
+            if (Task != null)
+            {
+                Task.IsCompleted = !Task.IsCompleted;
+                TaskRepository.GetTaskRepository().RefreshTaskItems();
+                DoneB.Content = Task.IsCompleted ? "Не готово" : "Готово";
+                DeleteTaskItem?.Invoke(Task);
+            }
         }
 
         private void DeleteB_Click(object sender, RoutedEventArgs e)
         {
-            var itemRepos = TaskRepository.GetTaskRepository();
-            itemRepos.RemoveTaskDictionary(Task);
-            DeleteTaskItem?.Invoke();
+            if (Task != null)
+            {
+                TaskRepository.RemoveTaskDictionary(Task);
+                DeleteTaskItem?.Invoke(Task);
+            }
         }
     }
 }
