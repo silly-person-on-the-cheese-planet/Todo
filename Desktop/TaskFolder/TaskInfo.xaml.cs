@@ -15,6 +15,11 @@ namespace Desktop.TaskFolder
         public TaskInfo()
         {
             InitializeComponent();
+            // Убедимся, что событие Click привязано только один раз
+            DeleteB.Click -= DeleteB_Click;
+            DoneB.Click -= DoneB_Click;
+            DeleteB.Click += DeleteB_Click;
+            DoneB.Click += DoneB_Click;
         }
 
         public void InfoLoad(TaskDictionary? Task)
@@ -31,17 +36,23 @@ namespace Desktop.TaskFolder
             TimeItem.Text = Task.Time;
             DateItem.Text = Task.Date;
             SubtitleItem.Text = Task.Description;
-            DoneB.Content = Task.IsCompleted ? "Не готово" : "Готово";
         }
 
         private void DoneB_Click(object sender, RoutedEventArgs e)
         {
             if (Task != null)
             {
+                // Переключаем статус задачи
                 Task.IsCompleted = !Task.IsCompleted;
+
+                // Сохраняем изменения в репозитории
+                TaskRepository.SaveTasks();
+
+                // Вызываем событие обновления задач
                 TaskRepository.GetTaskRepository().RefreshTaskItems();
-                DoneB.Content = Task.IsCompleted ? "Не готово" : "Готово";
-                DeleteTaskItem?.Invoke(Task);
+
+                // Скрываем панель TaskInfo
+                this.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -55,3 +66,4 @@ namespace Desktop.TaskFolder
         }
     }
 }
+

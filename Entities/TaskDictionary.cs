@@ -8,8 +8,6 @@ namespace Entities
 {
     public class TaskDictionary
     {
-        private static int nextId = 1;
-
         public int Id { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
@@ -17,10 +15,5 @@ namespace Entities
         public string? Time { get; set; }
         public bool IsCompleted { get; set; }
         public string? Category { get; set; }
-
-        public TaskDictionary()
-        {
-            Id = nextId++;
-        }
     }
 }

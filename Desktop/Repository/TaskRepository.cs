@@ -46,12 +46,15 @@ namespace Desktop.Repository
 
         public TaskDictionary? GetTaskRepos(int id) => taskItems.FirstOrDefault(x => x.Id == id);
 
-        public void RefreshTaskItems() => TaskItemsChanged?.Invoke();
-
-        private static void SaveTasks()
+        public static void SaveTasks()
         {
             var json = JsonConvert.SerializeObject(taskItems, Formatting.Indented);
             File.WriteAllText(filePath, json);
+        }
+
+        public void RefreshTaskItems()
+        {
+            TaskItemsChanged?.Invoke();
         }
     }
 }

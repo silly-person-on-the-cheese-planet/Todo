@@ -7,9 +7,6 @@ using Desktop.Repository;
 
 namespace Desktop
 {
-    /// <summary>
-    /// Логика взаимодействия для Registration.xaml
-    /// </summary>
     public partial class Registration : Window
     {
         public Registration()

@@ -12,8 +12,7 @@
         <Button x:Name="zada4aB" HorizontalAlignment="Center" Margin="0,338,0,0" VerticalAlignment="Top" Width="284" Background="#FFF96868" Height="38" Foreground="White" BorderBrush="{x:Null}" Padding="0,0,0,0" BorderThickness="0,0,0,0" Click="zada4aB_Click">
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="#f96060"
-                            CornerRadius="5,5,5,5" Margin="0,0,0,0">
+                    <Border Background="#f96060" CornerRadius="5,5,5,5" Margin="0,0,0,0">
                         <Label Content="Создать первую задачу" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="19"/>
                     </Border>
                 </ControlTemplate>

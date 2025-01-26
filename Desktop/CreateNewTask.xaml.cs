@@ -33,6 +33,12 @@ namespace Desktop
             var textBox = sender as TextBox;
             string text = textBox.Text;
 
+            if (text.Length == 2 && !text.Contains(":"))
+            {
+                textBox.Text += ":";
+                textBox.CaretIndex = 3;
+            }
+
             if (text.Count(c => c == ':') > 1)
             {
                 textBox.Text = string.Empty;

@@ -29,6 +29,9 @@ namespace Desktop
             userTasks = tasks;
             InitializeTasks(userTasks);
             InitializeCategories();
+
+            // Подписываемся на событие обновления задач
+            TaskRepository.GetTaskRepository().TaskItemsChanged += RefreshTasks;
         }
 
         private void InitializeCategories()
@@ -58,8 +61,7 @@ namespace Desktop
 
             foreach (TaskDictionary task in taskItems)
             {
-                if ((showCompletedTasks && task.IsCompleted || !showCompletedTasks && !task.IsCompleted) &&
-                    (selectedCategory == "All" || task.Category == selectedCategory))
+                if ((showCompletedTasks && task.IsCompleted) || (!showCompletedTasks && !task.IsCompleted && (selectedCategory == "All" || task.Category == selectedCategory)))
                 {
                     var item = new TaskItem();
                     item.InfoLoad(task);
@@ -104,6 +106,7 @@ namespace Desktop
 
             var item = taskItem.Task;
 
+            // Отображаем панель TaskInfo
             TaskI.Visibility = Visibility.Visible;
             var itemInfo = new TaskInfo();
             itemInfo.InfoLoad(item);
@@ -173,12 +176,14 @@ namespace Desktop
         private void TasksTextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
             showCompletedTasks = false;
+            selectedCategory = "All";
             InitializeTasks(userTasks);
         }
 
         private void HistoryTextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
             showCompletedTasks = true;
+            selectedCategory = "All"; // Показать все выполненные задачи независимо от категории
             InitializeTasks(userTasks);
         }
 
@@ -193,6 +198,13 @@ namespace Desktop
 
                 var deleteMenuItem = new MenuItem { Header = "Удалить категорию" };
                 deleteMenuItem.Click += (s, args) => DeleteCategory(categoryName);
+
+                // Отключаем возможность удаления для категорий "Дом", "Отдых", "Работа" и "Учеба"
+                if (categoryName == "Дом" || categoryName == "Отдых" || categoryName == "Работа" || categoryName == "Учеба")
+                {
+                    deleteMenuItem.IsEnabled = false;
+                }
+
                 contextMenu.Items.Add(deleteMenuItem);
 
                 categoryTextBlock.ContextMenu = contextMenu;
@@ -200,6 +212,7 @@ namespace Desktop
             }
             else
             {
+                showCompletedTasks = false;
                 selectedCategory = ((TextBlock)sender).Text;
                 InitializeTasks(userTasks);
             }
@@ -218,5 +231,12 @@ namespace Desktop
 
             MessageBox.Show("Категория удалена успешно!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+        // Метод для обновления списка задач
+        private void RefreshTasks()
+        {
+            InitializeTasks(userTasks);
+        }
     }
 }
+

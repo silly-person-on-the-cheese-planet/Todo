@@ -23,8 +23,7 @@
             <Button x:Name="loginB" HorizontalAlignment="Left" Margin="10,421,0,0" VerticalAlignment="Top" Width="284" Background="#FFF96868" Height="45" Foreground="White" BorderBrush="{x:Null}" Padding="0,0,0,0" BorderThickness="0,0,0,0" Click="LoginB_Click">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="#f96060"
-                                CornerRadius="15,15,2,2">
+                        <Border Background="#f96060" CornerRadius="15,15,2,2">
                             <Label Content="Войти" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="19"/>
                         </Border>
                     </ControlTemplate>
@@ -33,8 +32,7 @@
             <Button x:Name="registrationB" HorizontalAlignment="Left" VerticalAlignment="Top" Width="284" Background="#FFF96868" Height="45" Foreground="White" BorderBrush="{x:Null}" Padding="0,0,0,0" BorderThickness="0,0,0,0" Margin="10,479,0,0" Click="RegistrationB_Click">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="#f96060"
-                                CornerRadius="2,2,15,15">
+                        <Border Background="#f96060" CornerRadius="2,2,15,15">
                             <Label Content="Регистрация" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="19"/>
                         </Border>
                     </ControlTemplate>
