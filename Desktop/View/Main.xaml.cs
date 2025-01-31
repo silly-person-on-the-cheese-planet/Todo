@@ -11,6 +11,7 @@ using Desktop.Repository;
 using Desktop.TaskFolder;
 using Entities;
 using System.Windows.Media.Effects;
+using System.Windows.Media.Animation;
 
 namespace Desktop.View
 {
@@ -31,6 +32,15 @@ namespace Desktop.View
             InitializeCategories();
 
             TaskRepository.GetTaskRepository().TaskItemsChanged += RefreshTasks;
+
+            // Animation for UserNameBlock
+            var animation = new DoubleAnimation
+            {
+                From = 0.0,
+                To = 1.0,
+                Duration = new Duration(TimeSpan.FromSeconds(1))
+            };
+            UserNameBlock.BeginAnimation(UIElement.OpacityProperty, animation);
         }
 
         private void InitializeCategories()
