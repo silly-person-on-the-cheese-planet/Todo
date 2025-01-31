@@ -1,11 +1,11 @@
-﻿<Window x:Class="Desktop.Registration"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Desktop"
-        mc:Ignorable="d"
-        Title="Registration" Height="600" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+﻿<Page x:Class="Desktop.View.Registration"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:local="clr-namespace:Desktop.View"
+      mc:Ignorable="d"
+      Title="Registration">
     <Grid>
         <Grid Margin="0,0,400,0">
             <Image HorizontalAlignment="Left" Height="152" Margin="66,66,0,0" VerticalAlignment="Top" Width="152" Source="/logo.png">
@@ -46,4 +46,4 @@
             <PasswordBox x:Name="pass2PASSwordBox" HorizontalAlignment="Left" Margin="4,350,0,0" Width="290" Background="{x:Null}" BorderBrush="#FFF1F1F1" PasswordChar="*" BorderThickness="0,0,0,2" Height="22" GotFocus="Pass2PASSwordBox_GotFocus" LostFocus="Pass2PASSwordBox_LostFocus" PasswordChanged="Pass2PASSwordBox_PasswordChanged" FontSize="15" VerticalAlignment="Top"/>
         </Grid>
     </Grid>
-</Window>
+</Page>

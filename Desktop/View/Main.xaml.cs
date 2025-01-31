@@ -12,9 +12,9 @@ using Desktop.TaskFolder;
 using Entities;
 using System.Windows.Media.Effects;
 
-namespace Desktop
+namespace Desktop.View
 {
-    public partial class Main : Window
+    public partial class Main : Page
     {
         private bool showCompletedTasks = false;
         private List<TaskDictionary> userTasks;
@@ -30,7 +30,6 @@ namespace Desktop
             InitializeTasks(userTasks);
             InitializeCategories();
 
-            // Подписываемся на событие обновления задач
             TaskRepository.GetTaskRepository().TaskItemsChanged += RefreshTasks;
         }
 
@@ -106,7 +105,6 @@ namespace Desktop
 
             var item = taskItem.Task;
 
-            // Отображаем панель TaskInfo
             TaskI.Visibility = Visibility.Visible;
             var itemInfo = new TaskInfo();
             itemInfo.InfoLoad(item);
@@ -149,28 +147,12 @@ namespace Desktop
 
         private void ExitB_Click(object sender, RoutedEventArgs e)
         {
-            var user = UserRepository.GetUserByName(userName);
-            if (user != null)
-            {
-                user.Tasks = userTasks;
-                UserRepository.SaveUserTasks(user);
-            }
-
-            LogIn logIn = new();
-            logIn.Show();
-            this.Close();
+            this.NavigationService.Navigate(new LogIn());
         }
 
         private void CreateNewTaskB_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            CreateNewTask createNewTask = new CreateNewTask(userName, userTasks);
-            createNewTask.ShowDialog();
-
-            if (createNewTask.DialogResult == true)
-            {
-                InitializeTasks(userTasks);
-                InitializeCategories();
-            }
+            this.NavigationService.Navigate(new CreateNewTask(userName, userTasks));
         }
 
         private void TasksTextBlock_MouseDown(object sender, MouseButtonEventArgs e)
@@ -183,7 +165,7 @@ namespace Desktop
         private void HistoryTextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
             showCompletedTasks = true;
-            selectedCategory = "All"; // Показать все выполненные задачи независимо от категории
+            selectedCategory = "All";
             InitializeTasks(userTasks);
         }
 
@@ -199,7 +181,6 @@ namespace Desktop
                 var deleteMenuItem = new MenuItem { Header = "Удалить категорию" };
                 deleteMenuItem.Click += (s, args) => DeleteCategory(categoryName);
 
-                // Отключаем возможность удаления для категорий "Дом", "Отдых", "Работа" и "Учеба"
                 if (categoryName == "Дом" || categoryName == "Отдых" || categoryName == "Работа" || categoryName == "Учеба")
                 {
                     deleteMenuItem.IsEnabled = false;
@@ -232,11 +213,9 @@ namespace Desktop
             MessageBox.Show("Категория удалена успешно!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        // Метод для обновления списка задач
         private void RefreshTasks()
         {
             InitializeTasks(userTasks);
         }
     }
 }
-
